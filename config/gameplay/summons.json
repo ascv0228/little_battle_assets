@@ -196,5 +196,11 @@
     "label": "Soldier",
     "cost": 220,
     "cooldown": 4.5
+  },
+  {
+    "character": "human_martial_hero",
+    "label": "Martial Hero",
+    "cost": 180,
+    "cooldown": 3.6
   }
 ]

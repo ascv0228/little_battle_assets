@@ -69,3 +69,9 @@ Publishing modified content creates a new version/document.
 
 Commit frame-map recipes, gameplay JSON, code and lockfiles. Keep all original artwork, downloads and extracted sources only in ignored `temp_assets/`; do not commit them. Do not commit generated atlases, `public/`, `.env`, credentials, node_modules or discovery download caches.
 Local Git commits never imply pushing or deploying. Existing `temp_assets/` remains a private staging area.
+
+## Reviewed downloaded packs
+
+Run python tools/register_luizmelo.py to register the reviewed CC0 packs from temp_assets/itch_io, compile their animation packages and publish a new version in one command. Use --register-only only when preparing recipes without publication. Registered entries: human_martial_hero plus monster_lm_skeleton, monster_lm_mushroom, monster_lm_goblin and monster_lm_flying_eye. Martial Hero is also a team/summon option. The client discovers these prepared packages automatically in the character/monster codex after its next startup update.
+
+Red Panda remains private in temp_assets: its source license prohibits asset redistribution, so it is excluded from public game packages.

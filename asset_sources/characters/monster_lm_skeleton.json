@@ -1,0 +1,289 @@
+{
+  "source_root": "temp_assets/itch_io/luizmelo_monsters_creatures_fantasy/extracted/Monsters_Creatures_Fantasy/Skeleton",
+  "character": {
+    "schema_version": 1,
+    "id": "monster_lm_skeleton",
+    "name": "Fantasy Skeleton",
+    "faction": "ENEMY",
+    "type": "monster",
+    "stats": {
+      "hp": 100,
+      "atk": 20,
+      "defense": 0,
+      "attack_range": 95,
+      "attack_interval": 1.2
+    },
+    "equipment": [],
+    "behavior": {
+      "type": "advance_and_area_attack",
+      "move_speed": 60,
+      "hit_time": 0.4,
+      "death_fade_seconds": 1.0
+    },
+    "animation_menu": [
+      "idle",
+      "walk",
+      "attack",
+      "hurt",
+      "death",
+      "shield"
+    ]
+  },
+  "animations": {
+    "idle": {
+      "source_frame_size": [
+        150,
+        150
+      ],
+      "output_frame_size": [
+        450,
+        450
+      ],
+      "anchor": [
+        225,
+        303
+      ],
+      "label_offset": [
+        0,
+        -155
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": true,
+      "flip_x": false,
+      "layers": [
+        {
+          "file": "Idle.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "walk": {
+      "source_frame_size": [
+        150,
+        150
+      ],
+      "output_frame_size": [
+        450,
+        450
+      ],
+      "anchor": [
+        225,
+        303
+      ],
+      "label_offset": [
+        0,
+        -155
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": true,
+      "flip_x": false,
+      "layers": [
+        {
+          "file": "Walk.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "attack": {
+      "source_frame_size": [
+        150,
+        150
+      ],
+      "output_frame_size": [
+        450,
+        450
+      ],
+      "anchor": [
+        225,
+        303
+      ],
+      "label_offset": [
+        0,
+        -155
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": false,
+      "flip_x": false,
+      "layers": [
+        {
+          "file": "Attack.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ]
+    },
+    "hurt": {
+      "source_frame_size": [
+        150,
+        150
+      ],
+      "output_frame_size": [
+        450,
+        450
+      ],
+      "anchor": [
+        225,
+        303
+      ],
+      "label_offset": [
+        0,
+        -155
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": false,
+      "flip_x": false,
+      "layers": [
+        {
+          "file": "Take Hit.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "death": {
+      "source_frame_size": [
+        150,
+        150
+      ],
+      "output_frame_size": [
+        450,
+        450
+      ],
+      "anchor": [
+        225,
+        303
+      ],
+      "label_offset": [
+        0,
+        -155
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": false,
+      "flip_x": false,
+      "layers": [
+        {
+          "file": "Death.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    },
+    "shield": {
+      "source_frame_size": [
+        150,
+        150
+      ],
+      "output_frame_size": [
+        450,
+        450
+      ],
+      "anchor": [
+        225,
+        303
+      ],
+      "label_offset": [
+        0,
+        -155
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": true,
+      "flip_x": false,
+      "layers": [
+        {
+          "file": "Shield.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3
+          ]
+        }
+      ]
+    }
+  },
+  "source": {
+    "author": "LuizMelo",
+    "page_url": "https://luizmelo.itch.io/monsters-creatures-fantasy",
+    "license": "CC0",
+    "downloaded_on": "2026-11-14",
+    "downloads": [
+      {
+        "file": "downloads/Monsters_Creatures_Fantasy.zip",
+        "size": 67635,
+        "sha256": "31f90c4c825fc214359289bb654372dd84889a761a10c04f45da266d6f025359"
+      }
+    ]
+  },
+  "notes": [
+    "Art by LuizMelo, CC0. https://luizmelo.itch.io/monsters-creatures-fantasy",
+    "Horizontal square cells verified against downloaded PNG dimensions.",
+    "Playback uses configured 100ms frame timing; source sheets contain no timing metadata.",
+    "Native right-facing source. Flying eye uses Flight for movement without a fabricated idle clip."
+  ]
+}
