@@ -13,7 +13,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 def build(recipe_path, source_root, output_root):
     recipe = json.loads(recipe_path.read_text(encoding='utf-8'))
-    source_root = source_root or ROOT / recipe.get('source_root', 'lpc_entry/png')
+    source_root = source_root or ROOT / recipe.get('source_root', 'temp_assets/lpc_entry/png')
     manifest = recipe['character']
     gear_defense = sum(item['defense'] for item in manifest['equipment'])
     manifest['defense_breakdown'] = {'base': manifest['stats']['defense'], 'equipment': gear_defense}

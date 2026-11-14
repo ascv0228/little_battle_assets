@@ -1,5 +1,5 @@
 {
-  "source_root": "other_assets/Seeker_Lite",
+  "source_root": "temp_assets/Seeker_Lite",
   "character": {
     "schema_version": 1,
     "id": "monster_hooded_seeker",

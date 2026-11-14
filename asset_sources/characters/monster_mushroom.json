@@ -1,5 +1,5 @@
 {
-  "source_root": "other_assets/Forest_Monsters_FREE/Mushroom",
+  "source_root": "temp_assets/Forest_Monsters_FREE/Mushroom",
   "character": {
     "schema_version": 1,
     "id": "monster_mushroom",

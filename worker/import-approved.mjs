@@ -82,14 +82,16 @@ export function pngSize(bytes) {
 export async function importApproved(descriptor, { root = ROOT, download = fetchBytes, dryRun = false } = {}) {
   validateDescriptor(descriptor);
   const id = descriptor.character.id;
-  const target = path.join(root,'other_assets','imported',id), recipePath = path.join(root,'asset_sources','characters',`${id}.json`);
+  const target = path.join(root,'temp_assets','imported',id), recipePath = path.join(root,'asset_sources','characters',`${id}.json`);
   for (const p of [target,recipePath]) {
     try { await fs.access(p); throw new Error('Existing source or character will not be overwritten'); } catch (error) { if (error.code !== 'ENOENT') throw error; }
   }
   const outputs = new Map();
+  const downloads = [];
   for (const file of descriptor.source.downloads) {
     const bytes = await download(file.url);
     if (sha256(bytes) !== file.sha256) throw new Error('Source SHA256 mismatch');
+    downloads.push({ name: `${downloads.length}-${file.sha256}.${file.format}`, bytes });
     if (file.format === 'png') { pngSize(bytes); outputs.set(file.destination,bytes); }
     else {
       const archive = readZipEntries(bytes);
@@ -105,14 +107,16 @@ export async function importApproved(descriptor, { root = ROOT, download = fetch
     if (layer.columns.some(c => (c+1)*spec.source_frame_size[0] > width) || (layer.row+1)*spec.source_frame_size[1] > height) throw new Error('Frame map exceeds downloaded sheet');
   }
   if (dryRun) return { id, files: [...outputs.keys()], imported:false, validated:true };
-  const staging = path.join(root,'data','imports',`${id}-${process.pid}`);
+  const staging = path.join(root,'temp_assets','imports',`${id}-${process.pid}`);
   await fs.mkdir(staging,{recursive:true});
   try {
+    await fs.mkdir(path.join(staging,'downloads'),{recursive:true});
+    for (const file of downloads) await fs.writeFile(path.join(staging,'downloads',file.name),file.bytes,{flag:'wx'});
     for (const [relative,data] of outputs) { const p=path.join(staging,relative); await fs.mkdir(path.dirname(p),{recursive:true}); await fs.writeFile(p,data,{flag:'wx'}); }
     await atomicJson(path.join(staging,'provenance.json'),{schema_version:1,...descriptor.source,imported_at:new Date().toISOString()});
     await fs.mkdir(path.dirname(target),{recursive:true});
     await fs.rename(staging,target);
-    await atomicJson(recipePath,{source_root:`other_assets/imported/${id}`,character:descriptor.character,animations:descriptor.animations,notes:[...(descriptor.notes || []),`Source: ${descriptor.source.page_url}; author: ${descriptor.source.author}; license: ${descriptor.source.license.id}`]});
+    await atomicJson(recipePath,{source_root:`temp_assets/imported/${id}`,character:descriptor.character,animations:descriptor.animations,source:descriptor.source,notes:[...(descriptor.notes || []),`Source: ${descriptor.source.page_url}; author: ${descriptor.source.author}; license: ${descriptor.source.license.id}`]});
   } catch (error) { await fs.rm(staging,{recursive:true,force:true}); throw error; }
   return { id,files:[...outputs.keys()],imported:true,validated:true };
 }

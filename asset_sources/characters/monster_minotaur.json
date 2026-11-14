@@ -1,5 +1,5 @@
 {
-  "source_root": "other_assets/Minotaur",
+  "source_root": "temp_assets/Minotaur",
   "character": {
     "schema_version": 1,
     "id": "monster_minotaur",

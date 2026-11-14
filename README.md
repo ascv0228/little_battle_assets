@@ -4,8 +4,8 @@ Independent game-content repository and **Node.js** API server. Git history stay
 
 ## Layout
 
-- `temp_assets/`: temporary original downloads; ignored, never required by the published game.
-- `lpc_entry/`, `other_assets/`: authored source artwork copied from staging, used by offline builds only.
+- `temp_assets/`: all original downloads, archives and extracted source artwork; ignored by Git. Offline builders read this directory; the running game never does. Existing LPC sources are at `temp_assets/lpc_entry/`; other packs are directly under `temp_assets/<pack>/`. Approved itch.io imports use `temp_assets/imported/<id>/`, including original downloads and provenance.
+- No top-level `lpc_entry/` or `other_assets/` directories are used or created.
 - `asset_sources/characters/`: per-character frame maps, stats, gear defense and animation labels.
 - `tools/`: offline image processing; pygame is a build dependency, **not a server**.
 - `assets/`: generated game-ready atlas packages, gameplay JSON and props; not committed.
@@ -52,7 +52,7 @@ Accounts are currently installation identities, not username/password login or c
 ## GitHub Pages versus API hosting
 
 Pages can serve `public/manifest.json` and `public/releases/...`. It cannot run Node.js or connect to MongoDB.
-The Pages workflow builds and publishes only static game resources. Host the Node server separately, with HTTPS and private environment settings.
+The Pages workflow publishes a prepared ZIP of game-ready `assets/` contents. Build locally with `temp_assets/` present, run `python tools/prepared_bundle.py pack data/game-assets.zip`, upload that ZIP to a release or HTTPS storage, then supply its URL when manually running the Pages workflow. A clean checkout cannot rebuild ignored original downloads; CI does not require them. Host the Node server separately, with HTTPS and private environment settings.
 Set the client's `LITTLE_BATTLE_ASSET_MANIFEST_URL` to the Pages manifest URL and `LITTLE_BATTLE_API_URL` to that separate Node service.
 Both services must use the same published content/version. The client rejects mismatched asset/catalog versions.
 
@@ -67,5 +67,5 @@ Publishing modified content creates a new version/document.
 
 ## Version control
 
-Commit authored source art, frame-map recipes, gameplay JSON, code and lockfiles. Do not commit generated atlases, `public/`, `.env`, credentials, node_modules or discovery download caches.
+Commit frame-map recipes, gameplay JSON, code and lockfiles. Keep all original artwork, downloads and extracted sources only in ignored `temp_assets/`; do not commit them. Do not commit generated atlases, `public/`, `.env`, credentials, node_modules or discovery download caches.
 Local Git commits never imply pushing or deploying. Existing `temp_assets/` remains a private staging area.

@@ -9,3 +9,7 @@ __pycache__/
 *.py[cod]
 *.tmp
 design/previews/
+
+# Raw downloads and extraction belong exclusively in temp_assets.
+lpc_entry/
+other_assets/

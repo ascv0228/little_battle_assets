@@ -65,9 +65,14 @@ test('approved imports preserve provenance and recipe, never replace a character
     const dry=await importApproved(data,{root,download:async()=>png,dryRun:true}); assert.equal(dry.imported,false);
     const result=await importApproved(data,{root,download:async()=>png}); assert.equal(result.imported,true);
     const recipe=JSON.parse(await fs.readFile(path.join(root,'asset_sources/characters/monster_test.json'),'utf8'));
-    assert.equal(recipe.source_root,'other_assets/imported/monster_test');
-    const provenance=JSON.parse(await fs.readFile(path.join(root,'other_assets/imported/monster_test/provenance.json'),'utf8'));
+    assert.equal(recipe.source_root,'temp_assets/imported/monster_test');
+    assert.deepEqual(recipe.source,data.source);
+    const provenance=JSON.parse(await fs.readFile(path.join(root,'temp_assets/imported/monster_test/provenance.json'),'utf8'));
     assert.equal(provenance.author,'Artist');
+    const downloads = await fs.readdir(path.join(root,'temp_assets/imported/monster_test/downloads'));
+    assert.equal(downloads.length,1);
+    assert.deepEqual(await fs.readFile(path.join(root,'temp_assets/imported/monster_test/downloads',downloads[0])),png);
+    await assert.rejects(fs.access(path.join(root,'other_assets')));
     await assert.rejects(importApproved(data,{root,download:async()=>png}),/not be overwritten/);
   } finally {await fs.rm(root,{recursive:true,force:true});}
 });
@@ -76,7 +81,7 @@ test('download digest failure writes no source or recipe',async()=>{
   const root=await fs.mkdtemp(path.join(os.tmpdir(),'lb-bad-import-'));
   try {
     await assert.rejects(importApproved(descriptor(),{root,download:async()=>Buffer.from('wrong')}),/SHA256 mismatch/);
-    await assert.rejects(fs.access(path.join(root,'other_assets/imported/monster_test')));
+    await assert.rejects(fs.access(path.join(root,'temp_assets/imported/monster_test')));
     await assert.rejects(fs.access(path.join(root,'asset_sources/characters/monster_test.json')));
   } finally {await fs.rm(root,{recursive:true,force:true});}
 });

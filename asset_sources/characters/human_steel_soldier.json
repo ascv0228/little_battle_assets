@@ -1,5 +1,5 @@
 {
-  "source_root": "other_assets/FreeCharactersAnimationsAssetPack",
+  "source_root": "temp_assets/FreeCharactersAnimationsAssetPack",
   "character": {
     "schema_version": 1,
     "id": "human_steel_soldier",

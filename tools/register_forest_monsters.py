@@ -22,7 +22,7 @@ def main():
                            [('leather_harness', 4), ('iron_bracers', 4)])
     definition['animation_menu'] = [state for state, *_ in motions]
     definition['animation_labels'] = {state: label for state, label, *_ in motions}
-    save(definition, minotaur, 'other_assets/Minotaur',
+    save(definition, minotaur, 'temp_assets/Minotaur',
          ['96px cells. Only native right-facing rows 0..9 are compiled, matching other enemies.',
           'Motion order: Idle, Move, Taunt, Attack1, Attack2, Attack3, Attack4, Damage1, Damage2, Death.',
           'Battle walk aliases Move; default battle attack aliases Attack1. No roar or jump motion is inferred.'])
@@ -38,7 +38,7 @@ def main():
             (160, 128), (80, 128), [seconds / count] * count, state, -95)
         mushroom[state]['loop'] = state in ('idle', 'walk', 'stun')
     save(character('monster_mushroom', 'Mushroom', 'ENEMY', 100, 1.2, 60, 0.32, [], 3),
-         mushroom, 'other_assets/Forest_Monsters_FREE/Mushroom',
+         mushroom, 'temp_assets/Forest_Monsters_FREE/Mushroom',
          ['80x64 cells, VFX edition. Native right-facing sprites. Stun and alternate attack are registered animations; current battle uses area damage, not a stun status.'])
     stage_path = ROOT / 'assets/gameplay/stages.json'
     stages = json.loads(stage_path.read_text(encoding='utf-8'))

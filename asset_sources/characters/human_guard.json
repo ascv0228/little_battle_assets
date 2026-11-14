@@ -372,5 +372,6 @@
       ]
     }
   },
-  "notes": []
+  "notes": [],
+  "source_root": "temp_assets/lpc_entry/png"
 }

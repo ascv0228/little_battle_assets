@@ -372,5 +372,6 @@
   },
   "notes": [
     "No skeleton thrust body in source pack: explicit slash-body pose approximation."
-  ]
+  ],
+  "source_root": "temp_assets/lpc_entry/png"
 }

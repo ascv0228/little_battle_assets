@@ -66,13 +66,13 @@ def main():
             ):
                 clips[motion] = animation(battler, (32, 32), motion_columns, motion_row, (96, 96), (48, 96), [0.16] * 3, motion)
                 clips[motion]['loop'] = motion in ('idle', 'ready_attack', 'ready_magic', 'block', 'caution', 'abnormal', 'sleep')
-            save(character(ident, title, 'ALLY', reach, interval, speed, 0.18, gear), clips, 'other_assets/Pixel_Champions_v3',
+            save(character(ident, title, 'ALLY', reach, interval, speed, 0.18, gear), clips, 'temp_assets/Pixel_Champions_v3',
                  ['Pixel Champions by AlexDraws. 1x sheets are canonical; 3x sheets are duplicates.',
                   'Walk: overworld left-facing row. Attack: explicit SV motion row. Death: SV K/O row.',
                   'Alternate overworld sheets contain colored guide blocks; variant walks use clean base frames recolored from matching battle palettes.'])
             offers.append({'character': ident, 'label': title, 'cost': cost, 'cooldown': round(interval * 3, 1)})
 
-    source = 'other_assets/FreeCharactersAnimationsAssetPack'
+    source = 'temp_assets/FreeCharactersAnimationsAssetPack'
     for folder, ident, title, faction, reach, interval, speed, gear in (
         ('Human_Soldier_Sword_Shield', 'human_steel_soldier', 'Steel Soldier', 'ALLY', 65, 1.0, 65, [('steel_helmet', 3), ('steel_armor', 5), ('steel_shield', 6)]),
         ('Monster_Slime', 'monster_slime', 'Slime', 'ENEMY', 100, 1.25, 48, []),
@@ -105,7 +105,7 @@ def main():
         seeker_clips[state] = animation(f'Spritesheets/Seeker_Void_{file}.png', size, range(len(durations)), 0, tuple(n * 3 for n in size), tuple(n * 3 for n in pivot), durations, state)
         seeker_clips[state]['loop'] = state in ('walk', 'idle')
     save(character('monster_hooded_seeker', 'Hooded Seeker', 'ENEMY', 100, 0.95, 85, 0.14, [('void_cloak', 3)]), seeker_clips,
-         'other_assets/Seeker_Lite', ['Character art by Primitive Pixels. Per-animation feet pivots and frame timing from Animation_Guide.txt.'])
+         'temp_assets/Seeker_Lite', ['Character art by Primitive Pixels. Per-animation feet pivots and frame timing from Animation_Guide.txt.'])
 
     roster_path = ROOT / 'assets' / 'gameplay' / 'summons.json'
     roster = json.loads(roster_path.read_text(encoding='utf-8'))

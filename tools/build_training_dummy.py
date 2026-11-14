@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def build():
-    source = ROOT / 'lpc_entry' / 'png' / 'combat_dummy' / 'BODY_animation.png'
+    source = ROOT / 'temp_assets' / 'lpc_entry' / 'png' / 'combat_dummy' / 'BODY_animation.png'
     sheet = pygame.image.load(str(source))
     output = ROOT / 'assets' / 'props' / 'training_dummy'
     output.mkdir(parents=True, exist_ok=True)
