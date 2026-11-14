@@ -1,0 +1,476 @@
+{
+  "source_root": "other_assets/Minotaur",
+  "character": {
+    "schema_version": 1,
+    "id": "monster_minotaur",
+    "name": "Minotaur",
+    "faction": "ENEMY",
+    "type": "monster",
+    "stats": {
+      "hp": 100,
+      "atk": 20,
+      "defense": 0,
+      "attack_range": 105,
+      "attack_interval": 1.5
+    },
+    "equipment": [
+      {
+        "id": "leather_harness",
+        "defense": 4
+      },
+      {
+        "id": "iron_bracers",
+        "defense": 4
+      }
+    ],
+    "behavior": {
+      "type": "advance_and_area_attack",
+      "move_speed": 50,
+      "hit_time": 0.35,
+      "death_fade_seconds": 1.0
+    },
+    "animation_menu": [
+      "idle",
+      "move",
+      "taunt",
+      "attack_1",
+      "attack_2",
+      "attack_3",
+      "attack_4",
+      "damage_1",
+      "damage_2",
+      "death"
+    ],
+    "animation_labels": {
+      "idle": "Idle",
+      "move": "Move",
+      "taunt": "Taunt",
+      "attack_1": "Attack1",
+      "attack_2": "Attack2",
+      "attack_3": "Attack3",
+      "attack_4": "Attack4",
+      "damage_1": "Damage1",
+      "damage_2": "Damage2",
+      "death": "Death"
+    }
+  },
+  "animations": {
+    "idle": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "row": 0
+        }
+      ]
+    },
+    "move": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "row": 1
+        }
+      ]
+    },
+    "taunt": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "row": 2
+        }
+      ]
+    },
+    "attack_1": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "row": 3
+        }
+      ]
+    },
+    "attack_2": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.12,
+        0.12,
+        0.12,
+        0.12,
+        0.12
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4
+          ],
+          "row": 4
+        }
+      ]
+    },
+    "attack_3": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "row": 5
+        }
+      ]
+    },
+    "attack_4": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "row": 6
+        }
+      ]
+    },
+    "damage_1": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 7
+        }
+      ]
+    },
+    "damage_2": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 8
+        }
+      ]
+    },
+    "death": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        288,
+        288
+      ],
+      "anchor": [
+        144,
+        192
+      ],
+      "label_offset": [
+        0,
+        -150
+      ],
+      "durations": [
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15,
+        0.15
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "Minotaur - Sprite Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "row": 9
+        }
+      ]
+    }
+  },
+  "notes": [
+    "96px cells. Only native right-facing rows 0..9 are compiled, matching other enemies.",
+    "Motion order: Idle, Move, Taunt, Attack1, Attack2, Attack3, Attack4, Damage1, Damage2, Death.",
+    "Battle walk aliases Move; default battle attack aliases Attack1. No roar or jump motion is inferred."
+  ],
+  "animation_aliases": {
+    "walk": "move",
+    "attack": "attack_1"
+  }
+}

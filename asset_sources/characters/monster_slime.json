@@ -1,0 +1,381 @@
+{
+  "source_root": "other_assets/FreeCharactersAnimationsAssetPack",
+  "character": {
+    "schema_version": 1,
+    "id": "monster_slime",
+    "name": "Slime",
+    "faction": "ENEMY",
+    "stats": {
+      "hp": 100,
+      "atk": 20,
+      "defense": 2,
+      "attack_range": 100,
+      "attack_interval": 1.25
+    },
+    "equipment": [],
+    "behavior": {
+      "type": "advance_and_area_attack",
+      "move_speed": 48,
+      "hit_time": 0.3,
+      "death_fade_seconds": 1.0
+    },
+    "type": "monster"
+  },
+  "animations": {
+    "walk": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Walk-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "attack": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Attack1-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "death": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Death-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "idle": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Idle-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "hurt": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.075,
+        0.075,
+        0.075,
+        0.075
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Hurt-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "block": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Block-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "jump_fall": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999,
+        0.09999999999999999
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Jump_Fall-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    },
+    "attack_2": {
+      "source_frame_size": [
+        96,
+        96
+      ],
+      "output_frame_size": [
+        384,
+        384
+      ],
+      "anchor": [
+        192,
+        232
+      ],
+      "label_offset": [
+        0,
+        -70
+      ],
+      "durations": [
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09,
+        0.09
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "SpriteSheets(96x96)/Monster_Slime/No_Shadows/Monster_Slime_Attack2-Sheet.png",
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "row": 0
+        }
+      ],
+      "flip_x": false
+    }
+  },
+  "notes": [
+    "Free Characters Animations pack. 96px canvas preserved; fourfold nearest-neighbor scale. Source body occupies a small portion of each canvas."
+  ]
+}

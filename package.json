@@ -1,0 +1,15 @@
+{
+  "name": "little-battle-assets",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node server/index.mjs",
+    "publish:assets": "node scripts/publish.mjs",
+    "test": "node --test server/*.test.mjs scripts/*.test.mjs worker/*.test.mjs",
+    "discover": "node worker/discover.mjs",
+    "import-approved": "node worker/import-approved.mjs"
+  },
+  "dependencies": { "mongodb": "^7.0.0" }
+}

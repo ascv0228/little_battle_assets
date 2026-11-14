@@ -1,0 +1,742 @@
+{
+  "source_root": "other_assets/Pixel_Champions_v3",
+  "character": {
+    "schema_version": 1,
+    "id": "champion_wyvera",
+    "name": "Wyvera",
+    "faction": "ALLY",
+    "stats": {
+      "hp": 100,
+      "atk": 20,
+      "defense": 0,
+      "attack_range": 110,
+      "attack_interval": 1.2
+    },
+    "equipment": [
+      {
+        "id": "dragon_armor",
+        "defense": 8
+      },
+      {
+        "id": "dragon_helm",
+        "defense": 3
+      }
+    ],
+    "behavior": {
+      "type": "advance_and_area_attack",
+      "move_speed": 65,
+      "hit_time": 0.18,
+      "death_fade_seconds": 1.0
+    },
+    "type": "character"
+  },
+  "animations": {
+    "walk": {
+      "source_frame_size": [
+        24,
+        24
+      ],
+      "output_frame_size": [
+        120,
+        120
+      ],
+      "anchor": [
+        60,
+        95
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.14,
+        0.14,
+        0.14,
+        0.14
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Overworld/Wyvera-the-Queen-Dragoon.png",
+          "columns": [
+            0,
+            1,
+            2,
+            1
+          ],
+          "row": 1
+        }
+      ]
+    },
+    "attack": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.18,
+        0.18
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 0
+        }
+      ]
+    },
+    "death": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.18,
+        0.18,
+        0.4
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            6,
+            7,
+            8
+          ],
+          "row": 5
+        }
+      ]
+    },
+    "idle": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 0
+        }
+      ]
+    },
+    "ready_attack": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 1
+        }
+      ]
+    },
+    "ready_magic": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 2
+        }
+      ]
+    },
+    "block": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 3
+        }
+      ]
+    },
+    "hurt": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 4
+        }
+      ]
+    },
+    "evade": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            0,
+            1,
+            2
+          ],
+          "row": 5
+        }
+      ]
+    },
+    "thrust": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 0
+        }
+      ]
+    },
+    "swing": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 1
+        }
+      ]
+    },
+    "shoot": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 2
+        }
+      ]
+    },
+    "skill": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 3
+        }
+      ]
+    },
+    "cast": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 4
+        }
+      ]
+    },
+    "use_item": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            3,
+            4,
+            5
+          ],
+          "row": 5
+        }
+      ]
+    },
+    "flee": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            6,
+            7,
+            8
+          ],
+          "row": 0
+        }
+      ]
+    },
+    "victory": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            6,
+            7,
+            8
+          ],
+          "row": 1
+        }
+      ]
+    },
+    "caution": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            6,
+            7,
+            8
+          ],
+          "row": 2
+        }
+      ]
+    },
+    "abnormal": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            6,
+            7,
+            8
+          ],
+          "row": 3
+        }
+      ]
+    },
+    "sleep": {
+      "source_frame_size": [
+        32,
+        32
+      ],
+      "output_frame_size": [
+        96,
+        96
+      ],
+      "anchor": [
+        48,
+        96
+      ],
+      "label_offset": [
+        0,
+        -115
+      ],
+      "durations": [
+        0.16,
+        0.16,
+        0.16
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "1x-NormalSize/Battlers/wyvera-battle.png",
+          "columns": [
+            6,
+            7,
+            8
+          ],
+          "row": 4
+        }
+      ]
+    }
+  },
+  "notes": [
+    "Pixel Champions by AlexDraws. 1x sheets are canonical; 3x sheets are duplicates.",
+    "Walk: overworld left-facing row. Attack: explicit SV motion row. Death: SV K/O row.",
+    "Alternate overworld sheets contain colored guide blocks; variant walks use clean base frames recolored from matching battle palettes."
+  ]
+}

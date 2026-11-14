@@ -1,0 +1,460 @@
+{
+  "character": {
+    "schema_version": 1,
+    "id": "skeleton_bone_captain",
+    "name": "Bone Captain",
+    "faction": "ENEMY",
+    "stats": {
+      "hp": 100,
+      "atk": 20,
+      "defense": 0,
+      "attack_range": 52,
+      "attack_interval": 0.8
+    },
+    "equipment": [
+      {
+        "id": "FEET_shoes_brown",
+        "defense": 1
+      },
+      {
+        "id": "LEGS_pants_greenish",
+        "defense": 1
+      },
+      {
+        "id": "TORSO_chain_armor_torso",
+        "defense": 4
+      },
+      {
+        "id": "TORSO_chain_armor_jacket_purple",
+        "defense": 1
+      },
+      {
+        "id": "BELT_rope",
+        "defense": 0
+      },
+      {
+        "id": "HEAD_chain_armor_helmet",
+        "defense": 2
+      },
+      {
+        "id": "HANDS_plate_armor_gloves",
+        "defense": 1
+      }
+    ],
+    "behavior": {
+      "type": "advance_and_area_attack",
+      "move_speed": 65,
+      "hit_time": 0.4,
+      "death_fade_seconds": 1.0
+    },
+    "type": "monster"
+  },
+  "animations": {
+    "walk": {
+      "source_frame_size": [
+        64,
+        64
+      ],
+      "output_frame_size": [
+        128,
+        128
+      ],
+      "anchor": [
+        64,
+        120
+      ],
+      "label_offset": [
+        0,
+        -124
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "walkcycle/BODY_skeleton.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/FEET_shoes_brown.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/LEGS_pants_greenish.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/TORSO_chain_armor_torso.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/TORSO_chain_armor_jacket_purple.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/BELT_rope.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/HEAD_chain_armor_helmet.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/HANDS_plate_armor_gloves.png",
+          "row": 3,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ]
+    },
+    "attack": {
+      "source_frame_size": [
+        64,
+        64
+      ],
+      "output_frame_size": [
+        128,
+        128
+      ],
+      "anchor": [
+        64,
+        120
+      ],
+      "label_offset": [
+        0,
+        -124
+      ],
+      "durations": [
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "slash/BODY_skeleton.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/FEET_shoes_brown.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/LEGS_pants_greenish.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/TORSO_chain_armor_torso.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/TORSO_chain_armor_jacket_purple.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/BELT_rope.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/HEAD_chain_armor_helmet.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/HANDS_plate_armor_gloves.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/WEAPON_dagger.png",
+          "row": 3,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    "death": {
+      "source_frame_size": [
+        64,
+        64
+      ],
+      "output_frame_size": [
+        128,
+        128
+      ],
+      "anchor": [
+        64,
+        120
+      ],
+      "label_offset": [
+        0,
+        -124
+      ],
+      "durations": [
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "hurt/BODY_skeleton.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/FEET_shoes_brown.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/LEGS_pants_greenish.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/TORSO_chain_armor_torso.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/TORSO_chain_armor_jacket_purple.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/BELT_rope.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/HEAD_chain_armor_helmet.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/HANDS_plate_armor_gloves.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "notes": []
+}

@@ -1,0 +1,26 @@
+name: Discover free character and creature assets
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 2 * * *'
+permissions:
+  contents: read
+jobs:
+  discover:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Inspect public itch.io RSS feeds
+        run: node worker/discover.mjs
+      - name: Retain provenance queue for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: asset-discovery-candidates
+          path: data/discovery/candidates.json
+          if-no-files-found: warn
+          retention-days: 14

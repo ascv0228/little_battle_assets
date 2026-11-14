@@ -1,0 +1,200 @@
+[
+  {
+    "character": "human_scout",
+    "cost": 80,
+    "cooldown": 2.0,
+    "label": "Scout"
+  },
+  {
+    "character": "human_guard",
+    "cost": 120,
+    "cooldown": 3.2,
+    "label": "Guard"
+  },
+  {
+    "character": "human_spearman",
+    "cost": 160,
+    "cooldown": 4.2,
+    "label": "Spear"
+  },
+  {
+    "character": "human_monk",
+    "cost": 90,
+    "cooldown": 2.5,
+    "label": "Monk"
+  },
+  {
+    "character": "human_ranger",
+    "cost": 140,
+    "cooldown": 3.5,
+    "label": "Ranger"
+  },
+  {
+    "character": "human_shield_lancer",
+    "cost": 220,
+    "cooldown": 5.5,
+    "label": "Shield"
+  },
+  {
+    "character": "human_staff_monk",
+    "cost": 180,
+    "cooldown": 4.5,
+    "label": "Staff"
+  },
+  {
+    "character": "human_knight",
+    "cost": 300,
+    "cooldown": 7.0,
+    "label": "Knight"
+  },
+  {
+    "character": "champion_glenys",
+    "label": "Glenys",
+    "cost": 180,
+    "cooldown": 3.0
+  },
+  {
+    "character": "champion_glenys_v2",
+    "label": "Glenys V2",
+    "cost": 180,
+    "cooldown": 3.0
+  },
+  {
+    "character": "champion_glenys_v3",
+    "label": "Glenys V3",
+    "cost": 180,
+    "cooldown": 3.0
+  },
+  {
+    "character": "champion_hex",
+    "label": "Hex",
+    "cost": 230,
+    "cooldown": 4.8
+  },
+  {
+    "character": "champion_hex_v2",
+    "label": "Hex V2",
+    "cost": 230,
+    "cooldown": 4.8
+  },
+  {
+    "character": "champion_hex_v3",
+    "label": "Hex V3",
+    "cost": 230,
+    "cooldown": 4.8
+  },
+  {
+    "character": "champion_ley",
+    "label": "Ley",
+    "cost": 210,
+    "cooldown": 4.2
+  },
+  {
+    "character": "champion_ley_v2",
+    "label": "Ley V2",
+    "cost": 210,
+    "cooldown": 4.2
+  },
+  {
+    "character": "champion_ley_v3",
+    "label": "Ley V3",
+    "cost": 210,
+    "cooldown": 4.2
+  },
+  {
+    "character": "champion_linail",
+    "label": "Linail",
+    "cost": 240,
+    "cooldown": 4.5
+  },
+  {
+    "character": "champion_linail_v2",
+    "label": "Linail V2",
+    "cost": 240,
+    "cooldown": 4.5
+  },
+  {
+    "character": "champion_linail_v3",
+    "label": "Linail V3",
+    "cost": 240,
+    "cooldown": 4.5
+  },
+  {
+    "character": "champion_oratio",
+    "label": "Oratio",
+    "cost": 190,
+    "cooldown": 3.0
+  },
+  {
+    "character": "champion_oratio_v2",
+    "label": "Oratio V2",
+    "cost": 190,
+    "cooldown": 3.0
+  },
+  {
+    "character": "champion_oratio_v3",
+    "label": "Oratio V3",
+    "cost": 190,
+    "cooldown": 3.0
+  },
+  {
+    "character": "champion_ouzo",
+    "label": "Ouzo",
+    "cost": 200,
+    "cooldown": 3.9
+  },
+  {
+    "character": "champion_ouzo_v2",
+    "label": "Ouzo V2",
+    "cost": 200,
+    "cooldown": 3.9
+  },
+  {
+    "character": "champion_ouzo_v3",
+    "label": "Ouzo V3",
+    "cost": 200,
+    "cooldown": 3.9
+  },
+  {
+    "character": "champion_prime",
+    "label": "Prime",
+    "cost": 260,
+    "cooldown": 5.4
+  },
+  {
+    "character": "champion_prime_v2",
+    "label": "Prime V2",
+    "cost": 260,
+    "cooldown": 5.4
+  },
+  {
+    "character": "champion_prime_v3",
+    "label": "Prime V3",
+    "cost": 260,
+    "cooldown": 5.4
+  },
+  {
+    "character": "champion_wyvera",
+    "label": "Wyvera",
+    "cost": 250,
+    "cooldown": 3.6
+  },
+  {
+    "character": "champion_wyvera_v2",
+    "label": "Wyvera V2",
+    "cost": 250,
+    "cooldown": 3.6
+  },
+  {
+    "character": "champion_wyvera_v3",
+    "label": "Wyvera V3",
+    "cost": 250,
+    "cooldown": 3.6
+  },
+  {
+    "character": "human_steel_soldier",
+    "label": "Soldier",
+    "cost": 220,
+    "cooldown": 4.5
+  }
+]

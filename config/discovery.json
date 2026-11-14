@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "feeds": [
+    "https://itch.io/game-assets/free/tag-characters.xml",
+    "https://itch.io/game-assets/free/tag-animals.xml",
+    "https://itch.io/game-assets/free/tag-monsters.xml"
+  ]
+}

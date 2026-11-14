@@ -1,0 +1,418 @@
+{
+  "character": {
+    "schema_version": 1,
+    "id": "human_knight",
+    "name": "Knight",
+    "faction": "ALLY",
+    "stats": {
+      "hp": 100,
+      "atk": 20,
+      "defense": 0,
+      "attack_range": 52,
+      "attack_interval": 0.8
+    },
+    "equipment": [
+      {
+        "id": "FEET_plate_armor_shoes",
+        "defense": 2
+      },
+      {
+        "id": "LEGS_plate_armor_pants",
+        "defense": 3
+      },
+      {
+        "id": "TORSO_plate_armor_torso",
+        "defense": 5
+      },
+      {
+        "id": "TORSO_plate_armor_arms_shoulders",
+        "defense": 2
+      },
+      {
+        "id": "HEAD_plate_armor_helmet",
+        "defense": 3
+      },
+      {
+        "id": "HANDS_plate_armor_gloves",
+        "defense": 1
+      }
+    ],
+    "behavior": {
+      "type": "advance_and_area_attack",
+      "move_speed": 65,
+      "hit_time": 0.4,
+      "death_fade_seconds": 1.0
+    },
+    "type": "character"
+  },
+  "animations": {
+    "walk": {
+      "source_frame_size": [
+        64,
+        64
+      ],
+      "output_frame_size": [
+        128,
+        128
+      ],
+      "anchor": [
+        64,
+        120
+      ],
+      "label_offset": [
+        0,
+        -124
+      ],
+      "durations": [
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "loop": true,
+      "layers": [
+        {
+          "file": "walkcycle/BODY_male.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/FEET_plate_armor_shoes.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/LEGS_plate_armor_pants.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/TORSO_plate_armor_torso.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/TORSO_plate_armor_arms_shoulders.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/HEAD_plate_armor_helmet.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "file": "walkcycle/HANDS_plate_armor_gloves.png",
+          "row": 1,
+          "columns": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ]
+    },
+    "attack": {
+      "source_frame_size": [
+        64,
+        64
+      ],
+      "output_frame_size": [
+        128,
+        128
+      ],
+      "anchor": [
+        64,
+        120
+      ],
+      "label_offset": [
+        0,
+        -124
+      ],
+      "durations": [
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333,
+        0.13333333333333333
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "slash/BODY_human.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/FEET_plate_armor_shoes.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/LEGS_plate_armor_pants.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/TORSO_plate_armor_torso.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/TORSO_plate_armor_arms_shoulders.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/HEAD_plate_armor_helmet.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/HANDS_plate_armor_gloves.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "slash/WEAPON_dagger.png",
+          "row": 1,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    },
+    "death": {
+      "source_frame_size": [
+        64,
+        64
+      ],
+      "output_frame_size": [
+        128,
+        128
+      ],
+      "anchor": [
+        64,
+        120
+      ],
+      "label_offset": [
+        0,
+        -124
+      ],
+      "durations": [
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999,
+        0.13999999999999999
+      ],
+      "loop": false,
+      "layers": [
+        {
+          "file": "hurt/BODY_male.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/FEET_plate_armor_shoes.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/LEGS_plate_armor_pants.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/TORSO_plate_armor_torso.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/TORSO_plate_armor_arms_shoulders.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/HEAD_plate_armor_helmet.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "file": "hurt/HANDS_plate_armor_gloves.png",
+          "row": 0,
+          "columns": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        }
+      ]
+    }
+  },
+  "notes": []
+}

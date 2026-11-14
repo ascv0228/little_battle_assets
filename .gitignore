@@ -1,0 +1,11 @@
+*.env
+temp_assets/
+assets/
+public/
+node_modules/
+data/
+*.log
+__pycache__/
+*.py[cod]
+*.tmp
+design/previews/

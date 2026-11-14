@@ -1,0 +1,89 @@
+[
+  {
+    "id": "meadow",
+    "name": "GREEN MEADOW",
+    "subtitle": "Chapter 01 / The borderlands",
+    "tower_hp": 900,
+    "enemy_tower_hp": 600,
+    "enemy_interval": 3.4,
+    "enemy_budget": 22,
+    "income": 32,
+    "starting_gold": 360,
+    "enemy_scale": 1.0,
+    "reward": 150,
+    "sky": [
+      109,
+      192,
+      226
+    ],
+    "grass": [
+      93,
+      150,
+      64
+    ],
+    "enemy_opening": [
+      "monster_slime",
+      "monster_hooded_seeker",
+      "monster_mushroom",
+      "monster_minotaur"
+    ]
+  },
+  {
+    "id": "road",
+    "name": "AMBER CROSSING",
+    "subtitle": "Chapter 02 / Hold the old road",
+    "tower_hp": 1000,
+    "enemy_tower_hp": 900,
+    "enemy_interval": 2.7,
+    "enemy_budget": 30,
+    "income": 36,
+    "starting_gold": 460,
+    "enemy_scale": 1.15,
+    "reward": 200,
+    "sky": [
+      231,
+      183,
+      132
+    ],
+    "grass": [
+      142,
+      145,
+      61
+    ],
+    "enemy_opening": [
+      "monster_slime",
+      "monster_hooded_seeker",
+      "monster_mushroom",
+      "monster_minotaur"
+    ]
+  },
+  {
+    "id": "citadel",
+    "name": "THE LAST CITADEL",
+    "subtitle": "Chapter 03 / Break the bone legion",
+    "tower_hp": 1200,
+    "enemy_tower_hp": 1300,
+    "enemy_interval": 2.2,
+    "enemy_budget": 40,
+    "income": 40,
+    "starting_gold": 550,
+    "enemy_scale": 1.3,
+    "reward": 300,
+    "sky": [
+      119,
+      146,
+      186
+    ],
+    "grass": [
+      74,
+      118,
+      95
+    ],
+    "enemy_opening": [
+      "monster_slime",
+      "monster_hooded_seeker",
+      "monster_mushroom",
+      "monster_minotaur"
+    ]
+  }
+]

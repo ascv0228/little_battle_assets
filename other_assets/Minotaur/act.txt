@@ -1,0 +1,10 @@
+Idle
+Move
+Taunt
+Attack1
+Attack2
+Attack3
+Attack4
+Damage1
+Damage2
+Death
