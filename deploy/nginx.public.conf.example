@@ -18,7 +18,7 @@ http {
     # Keep port 80 available for ACME HTTP-01 certificate renewal.
     server {
         listen 80;
-        server_name game.example.com;
+        server_name techgg.duckdns.org;
 
         location ^~ /.well-known/acme-challenge/ {
             root D:/GitHub/little_battle_assets/deploy/acme-webroot;
@@ -31,11 +31,11 @@ http {
 
     server {
         listen 443 ssl;
-        server_name game.example.com;
+        server_name techgg.duckdns.org;
 
         # Replace these with the PEM certificate/key files issued for your domain.
-        ssl_certificate D:/Tool/certs/game.example.com/fullchain.pem;
-        ssl_certificate_key D:/Tool/certs/game.example.com/private.key;
+        ssl_certificate D:/Tool/certs/techgg.duckdns.org/fullchain.pem;
+        ssl_certificate_key D:/Tool/certs/techgg.duckdns.org/private.key;
         ssl_protocols TLSv1.2 TLSv1.3;
         ssl_session_cache shared:TLS:10m;
         ssl_session_timeout 10m;

@@ -63,13 +63,13 @@ An app checks the manifest every startup and downloads only files whose cached S
 
 `deploy/start-local.bat` starts the Node API on `127.0.0.1:8787` and the local Nginx proxy on `127.0.0.1:8080`. It is only for local development and does not expose the service to the Internet. Use `deploy/stop-local.bat` to stop it.
 
-For public access, first point your domain's DNS A/AAAA record at this machine's public IP, forward TCP ports 80 and 443 through the router/firewall, and obtain a TLS certificate with a PEM certificate chain and private key. Copy `deploy/nginx.public.conf.example` to the ignored `deploy/nginx.public.conf`, then replace `game.example.com` and the certificate/key paths. The template serves immutable assets directly from `public/` and reverse-proxies `/api/` and `/health` to Node on loopback. Start and stop with `deploy/start-public.bat` and `deploy/stop-public.bat` only after the public config and certificate are ready.
+For public access, `techgg.duckdns.org` must resolve to this machine's reachable public IP, and TCP ports 80 and 443 must reach this Windows host through the router/firewall. Obtain a TLS certificate with a PEM chain and private key, then place them at `D:/Tool/certs/techgg.duckdns.org/fullchain.pem` and `D:/Tool/certs/techgg.duckdns.org/private.key` (or edit the paths). Copy `deploy/nginx.public.conf.example` to the ignored `deploy/nginx.public.conf`. The template serves immutable assets directly from `public/` and reverse-proxies `/api/` and `/health` to Node on loopback. Start and stop with `deploy/start-public.bat` and `deploy/stop-public.bat` only after DNS, port forwarding, and the certificate are ready.
 
 Configure remote clients with both URLs on the same HTTPS domain:
 
 ```powershell
-$env:LITTLE_BATTLE_ASSET_MANIFEST_URL = 'https://YOUR-DOMAIN/assets/manifest.json'
-$env:LITTLE_BATTLE_API_URL = 'https://YOUR-DOMAIN'
+$env:LITTLE_BATTLE_ASSET_MANIFEST_URL = 'https://techgg.duckdns.org/assets/manifest.json'
+$env:LITTLE_BATTLE_API_URL = 'https://techgg.duckdns.org'
 ```
 
 The client intentionally rejects remote HTTP because bearer tokens would otherwise travel unencrypted. Keep MongoDB credentials private in `.env` or `atlas-credentials.env`; do not expose port 8787 publicly. Both the public manifest and Node catalog must refer to the same published content version.
