@@ -34,7 +34,7 @@ Required `MONGODB_URI`; optional `MONGODB_USERNAME`, `MONGODB_PASSWORD` fill `<d
 The Mongo database defaults to `little_battle`, overridable with `MONGODB_DATABASE`.
 Database connection errors are reported without printing the URI or password.
 
-The client defaults to the public ngrok HTTPS address `https://bee-content-finch.ngrok-free.app`. Node listens only on `127.0.0.1:8787`; Nginx listens on `127.0.0.1:5000`, serves immutable assets, and proxies the API to Node.
+The native pygame client defaults to the public ngrok HTTPS address `https://bee-content-finch.ngrok-free.app`. Node listens only on `127.0.0.1:5000` and serves both immutable assets and the JSON API directly. No Nginx service or configuration is required. Existing API payloads and asset URLs are unchanged.
 
 | Endpoint | Purpose |
 | --- | --- |
@@ -49,6 +49,15 @@ The client defaults to the public ngrok HTTPS address `https://bee-content-finch
 Bearer tokens are stored hashed in MongoDB. Clients never connect directly to MongoDB.
 Accounts are currently installation identities, not username/password login or cross-device account recovery.
 
+### Shared HTTP JSON contract
+
+- Requests with bodies use `Content-Type: application/json`; authenticated team requests use `Authorization: Bearer <installation-token>`.
+- `POST /api/session` accepts `{}` for a new identity or `{"token":"..."}` to resume it; success returns `{"token":"..."}`. Resuming never silently creates a different identity.
+- `GET /api/player/team` returns `{"slots":null}` for an identity without a saved team, otherwise `{"slots":[...]}` with exactly 16 entries.
+- `PUT /api/player/team` accepts `{"slots":[...]}` and acknowledges the saved 16 entries in the same shape. Entries are distinct known character IDs or `null`, with at least one character. The backend remains responsible for validation and persistence; the APP must wait for a valid acknowledgment before reporting success or starting a sortie.
+- Database outages return HTTP 503 with an error object, not a synthetic success or volatile player data. `/assets/` remains independent of MongoDB; `/health` returns HTTP 503 while the database or published manifest is unavailable.
+- This is an HTTP request/response protocol, not a WebSocket or multiplayer battle protocol.
+
 ## GitHub Pages versus API hosting
 
 Pages can serve `public/manifest.json` and `public/releases/...`. It cannot run Node.js or connect to MongoDB.
@@ -59,15 +68,19 @@ Both services must use the same published content/version. The client rejects mi
 The publisher hashes content into immutable release directories, activates the manifest after all files are copied, and preserves old releases.
 An app checks the manifest every startup and downloads only files whose cached SHA-256 does not match.
 
-## Nginx + ngrok deployment (Windows)
+## Direct Node + ngrok deployment (Windows)
 
-`deploy/start-local.bat` starts the Node API on `127.0.0.1:8787` and Nginx on `127.0.0.1:5000`; it is local-only. `deploy/start-tunnel.bat` checks the ngrok config and the local `/health` endpoint, then opens the reserved public tunnel:
+`deploy/start-local.bat` starts Node directly on `127.0.0.1:5000`, explicitly setting `HOST` and `PORT` for that process; it is local-only. `deploy/start-tunnel.bat` checks the ngrok config, launches the local application, waits for the local `/health` endpoint, then opens the reserved public tunnel:
 
 ```powershell
 ngrok http --domain=bee-content-finch.ngrok-free.app 5000
 ```
 
-The script uses `D:\Tool\ngrok\ngrok.exe` and only starts the tunnel after health reports success, so MongoDB must be reachable first. Nginx serves assets directly and proxies `/api/` and `/health` to the loopback-only Node API. `deploy/stop-tunnel.bat` closes ngrok, Nginx, and the API window.
+The script uses `D:\Tool\ngrok\ngrok.exe` and only starts the tunnel after health reports success, so MongoDB must be reachable and assets published first. Node handles `/assets/`, `/api/` and `/health` on the same loopback port. `deploy/stop-tunnel.bat` closes the project's ngrok and API windows; `deploy/stop-local.bat` closes only the project's API window. Neither script manages system-wide proxy services.
+
+The application retains bearer-token validation, per-player team authorization, a 64 KiB JSON body limit, browser-origin checks, restricted public asset paths, immutable release caching and no-store manifest/API responses. Credentials and raw assets are not served. The current protocol is HTTP JSON plus resource downloads: there are no multiplayer room, WebSocket or authoritative battle-state recovery endpoints. Session resumption restores installation identity and saved teams, not a multiplayer battle.
+
+If a previous deployment is still running, stop that project's old processes before starting this version so port 5000 is free. When running `npm start` directly with an existing private environment file, remove an old `PORT=8787` override or change it to `PORT=5000`; the deployment batch script already overrides it without editing credentials.
 
 ngrok provides the public HTTPS endpoint, so this setup does not require a TLS certificate, router port forwarding, or inbound firewall rules. The ngrok CLI must be installed, authenticated, and able to connect outbound. When the tunnel is stopped, the public domain returns ngrok's offline page.
 
@@ -78,13 +91,15 @@ Assets: https://bee-content-finch.ngrok-free.app/assets/manifest.json
 API:    https://bee-content-finch.ngrok-free.app
 ```
 
-For local testing, set the client config to `config/client.local.example.json`. Keep MongoDB credentials private; do not expose port 8787. The public manifest and Node catalog must refer to the same published content version.
+For local testing, set the client config to `config/client.local.example.json`. Keep MongoDB credentials private and port 5000 bound to loopback; ngrok is the public entry point. The public manifest and Node catalog must refer to the same published content version.
 
 ## MongoDB data
 
 `catalogs` stores versioned character/stat/stage/summon documents; `players` stores hashed installation identities and team slots.
 Generated catalog data is inserted once per version, so server-side balance edits to that document are not overwritten at every request.
 Publishing modified content creates a new version/document.
+
+The application opens its HTTP listener independently of the initial database connection. A single controlled connection loop retries initial failures with capped exponential backoff, closes failed clients and stops retrying on shutdown. Credentials are never logged. Once MongoDB connects successfully, data APIs recover without an application restart. Existing connected-client topology recovery remains the MongoDB driver's responsibility; there is no in-memory fallback.
 
 ## Version control
 

@@ -95,14 +95,30 @@ export function createServer({ publicRoot, store, allowedOrigins = [] }) {
   });
 }
 
+export async function startServer(config, store = new MongoStore()) {
+  const server = createServer({ ...config, store });
+  await new Promise((resolve, reject) => {
+    server.once('error', reject);
+    server.listen(config.port, config.host, () => { server.off('error', reject); resolve(); });
+  });
+  // Assets must remain available while the store connects/retries in the background.
+  void store.connect(config).catch(() => {
+    console.error('MongoDB unavailable. Check private environment configuration, network and Atlas access rules.');
+  });
+  return server;
+}
+
 async function main() {
   const config = loadConfig();
   const store = new MongoStore();
-  try { await store.connect(config); console.log('MongoDB connected.'); }
-  catch { console.error('MongoDB unavailable. Check private environment configuration, network and Atlas access rules.'); }
-  const server = createServer({ ...config, store });
-  server.listen(config.port, config.host, () => console.log(`Little Battle Node service: http://${config.host}:${config.port}`));
-  for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(async () => { await store.close(); process.exit(0); }));
+  const server = await startServer(config, store);
+  console.log(`Little Battle Node service: http://${config.host}:${config.port}`);
+  for (const signal of ['SIGINT', 'SIGTERM']) process.once(signal, async () => {
+    const closed = new Promise(resolve => server.close(resolve));
+    await store.close();
+    await closed;
+    process.exit(0);
+  });
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) await main();

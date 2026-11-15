@@ -9,7 +9,7 @@ export function loadConfig() {
   for (const name of ['db_username', 'username']) uri = uri.replaceAll(`<${name}>`, encodeURIComponent(process.env.MONGODB_USERNAME || ''));
   for (const name of ['db_password', 'password']) uri = uri.replaceAll(`<${name}>`, encodeURIComponent(process.env.MONGODB_PASSWORD || ''));
   return { uri, database: process.env.MONGODB_DATABASE || 'little_battle',
-    host: process.env.HOST || '127.0.0.1', port: Number(process.env.PORT || 8787),
+    host: process.env.HOST || '127.0.0.1', port: Number(process.env.PORT || 5000),
     publicRoot: path.resolve(process.env.PUBLIC_ROOT || path.join(ROOT, 'public')),
     allowedOrigins: (process.env.ALLOWED_ORIGINS || '').split(',').filter(Boolean) };
 }

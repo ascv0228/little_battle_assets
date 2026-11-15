@@ -1,21 +1,54 @@
 import { createHash, randomBytes } from 'node:crypto';
+import { setTimeout as sleep } from 'node:timers/promises';
 
 const tokenHash = token => createHash('sha256').update(token).digest('hex');
 
 export class MongoStore {
-  async connect(config) {
-    if (!config.uri) throw new Error('MONGODB_URI is not configured');
+  constructor({ clientFactory = async (uri, options) => {
     const { MongoClient } = await import('mongodb');
-    this.client = new MongoClient(config.uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000 });
-    await this.client.connect();
-    this.db = this.client.db(config.database);
-    await this.db.command({ ping: 1 });
+    return new MongoClient(uri, options);
+  }, sleep: wait = (ms, { signal }) => sleep(ms, undefined, { signal }) } = {}) {
+    this.clientFactory = clientFactory;
+    this.sleep = wait;
+    this.shutdown = new AbortController();
+  }
+
+  connect(config) {
+    if (this.shutdown.signal.aborted) return Promise.reject(new Error('Store is closed'));
+    if (!config.uri) return Promise.reject(new Error('MONGODB_URI is not configured'));
+    this.connection ??= this.recover(config);
+    return this.connection;
+  }
+
+  async recover(config) {
+    let delay = 1000;
+    while (!this.shutdown.signal.aborted) {
+      let client;
+      try {
+        client = await this.clientFactory(config.uri, { serverSelectionTimeoutMS: 8000, connectTimeoutMS: 8000 });
+        this.shutdown.signal.throwIfAborted();
+        this.client = client;
+        await client.connect();
+        this.shutdown.signal.throwIfAborted();
+        const db = client.db(config.database);
+        await db.command({ ping: 1 });
+        this.shutdown.signal.throwIfAborted();
+        this.db = db;
+        return this;
+      } catch {
+        if (client) await client.close().catch(() => {});
+        this.client = undefined;
+        if (this.shutdown.signal.aborted) return this;
+        try { await this.sleep(delay, { signal: this.shutdown.signal }); } catch { return this; }
+        delay = Math.min(delay * 2, 30000);
+      }
+    }
     return this;
   }
 
   async healthy() {
     if (!this.db) return false;
-    try { await this.db.command({ ping: 1 }); return true; } catch { return false; }
+    try { await this.db.command({ ping: 1 }); return !this.shutdown.signal.aborted; } catch { return false; }
   }
 
   async catalog(raw) {
@@ -43,7 +76,13 @@ export class MongoStore {
     return result.matchedCount === 1;
   }
 
-  async close() { await this.client?.close(); }
+  async close() {
+    this.shutdown.abort();
+    this.db = undefined;
+    const client = this.client;
+    this.client = undefined;
+    await client?.close();
+  }
 }
 
 // Explicitly injected test double; production never falls back to volatile storage.
