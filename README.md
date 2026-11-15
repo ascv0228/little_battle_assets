@@ -34,7 +34,7 @@ Required `MONGODB_URI`; optional `MONGODB_USERNAME`, `MONGODB_PASSWORD` fill `<d
 The Mongo database defaults to `little_battle`, overridable with `MONGODB_DATABASE`.
 Database connection errors are reported without printing the URI or password.
 
-Default endpoint: `http://127.0.0.1:8787`.
+The client now targets the local Nginx proxy at `http://127.0.0.1:8080` by default. Run `deploy/start-local.bat` to start the Node API on loopback port 8787 and Nginx on port 8080. `npm start` starts only the API; it does not start Nginx.
 
 | Endpoint | Purpose |
 | --- | --- |
@@ -58,6 +58,21 @@ Both services must use the same published content/version. The client rejects mi
 
 The publisher hashes content into immutable release directories, activates the manifest after all files are copied, and preserves old releases.
 An app checks the manifest every startup and downloads only files whose cached SHA-256 does not match.
+
+## Nginx deployment (Windows)
+
+`deploy/start-local.bat` starts the Node API on `127.0.0.1:8787` and the local Nginx proxy on `127.0.0.1:8080`. It is only for local development and does not expose the service to the Internet. Use `deploy/stop-local.bat` to stop it.
+
+For public access, first point your domain's DNS A/AAAA record at this machine's public IP, forward TCP ports 80 and 443 through the router/firewall, and obtain a TLS certificate with a PEM certificate chain and private key. Copy `deploy/nginx.public.conf.example` to the ignored `deploy/nginx.public.conf`, then replace `game.example.com` and the certificate/key paths. The template serves immutable assets directly from `public/` and reverse-proxies `/api/` and `/health` to Node on loopback. Start and stop with `deploy/start-public.bat` and `deploy/stop-public.bat` only after the public config and certificate are ready.
+
+Configure remote clients with both URLs on the same HTTPS domain:
+
+```powershell
+$env:LITTLE_BATTLE_ASSET_MANIFEST_URL = 'https://YOUR-DOMAIN/assets/manifest.json'
+$env:LITTLE_BATTLE_API_URL = 'https://YOUR-DOMAIN'
+```
+
+The client intentionally rejects remote HTTP because bearer tokens would otherwise travel unencrypted. Keep MongoDB credentials private in `.env` or `atlas-credentials.env`; do not expose port 8787 publicly. Both the public manifest and Node catalog must refer to the same published content version.
 
 ## MongoDB data
 
