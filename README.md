@@ -34,7 +34,7 @@ Required `MONGODB_URI`; optional `MONGODB_USERNAME`, `MONGODB_PASSWORD` fill `<d
 The Mongo database defaults to `little_battle`, overridable with `MONGODB_DATABASE`.
 Database connection errors are reported without printing the URI or password.
 
-The client now targets the local Nginx proxy at `http://127.0.0.1:8080` by default. Run `deploy/start-local.bat` to start the Node API on loopback port 8787 and Nginx on port 8080. `npm start` starts only the API; it does not start Nginx.
+The client defaults to the public ngrok HTTPS address `https://bee-content-finch.ngrok-free.app`. Node listens only on `127.0.0.1:8787`; Nginx listens on `127.0.0.1:5000`, serves immutable assets, and proxies the API to Node.
 
 | Endpoint | Purpose |
 | --- | --- |
@@ -59,20 +59,26 @@ Both services must use the same published content/version. The client rejects mi
 The publisher hashes content into immutable release directories, activates the manifest after all files are copied, and preserves old releases.
 An app checks the manifest every startup and downloads only files whose cached SHA-256 does not match.
 
-## Nginx deployment (Windows)
+## Nginx + ngrok deployment (Windows)
 
-`deploy/start-local.bat` starts the Node API on `127.0.0.1:8787` and the local Nginx proxy on `127.0.0.1:8080`. It is only for local development and does not expose the service to the Internet. Use `deploy/stop-local.bat` to stop it.
-
-For public access, `techgg.duckdns.org` must resolve to this machine's reachable public IP, and TCP ports 80 and 443 must reach this Windows host through the router/firewall. Obtain a TLS certificate with a PEM chain and private key, then place them at `D:/Tool/certs/techgg.duckdns.org/fullchain.pem` and `D:/Tool/certs/techgg.duckdns.org/private.key` (or edit the paths). Copy `deploy/nginx.public.conf.example` to the ignored `deploy/nginx.public.conf`. The template serves immutable assets directly from `public/` and reverse-proxies `/api/` and `/health` to Node on loopback. Start and stop with `deploy/start-public.bat` and `deploy/stop-public.bat` only after DNS, port forwarding, and the certificate are ready.
-
-Configure remote clients with both URLs on the same HTTPS domain:
+`deploy/start-local.bat` starts the Node API on `127.0.0.1:8787` and Nginx on `127.0.0.1:5000`; it is local-only. `deploy/start-tunnel.bat` checks the ngrok config and the local `/health` endpoint, then opens the reserved public tunnel:
 
 ```powershell
-$env:LITTLE_BATTLE_ASSET_MANIFEST_URL = 'https://techgg.duckdns.org/assets/manifest.json'
-$env:LITTLE_BATTLE_API_URL = 'https://techgg.duckdns.org'
+ngrok http --domain=bee-content-finch.ngrok-free.app 5000
 ```
 
-The client intentionally rejects remote HTTP because bearer tokens would otherwise travel unencrypted. Keep MongoDB credentials private in `.env` or `atlas-credentials.env`; do not expose port 8787 publicly. Both the public manifest and Node catalog must refer to the same published content version.
+The script uses `D:\Tool\ngrok\ngrok.exe` and only starts the tunnel after health reports success, so MongoDB must be reachable first. Nginx serves assets directly and proxies `/api/` and `/health` to the loopback-only Node API. `deploy/stop-tunnel.bat` closes ngrok, Nginx, and the API window.
+
+ngrok provides the public HTTPS endpoint, so this setup does not require a TLS certificate, router port forwarding, or inbound firewall rules. The ngrok CLI must be installed, authenticated, and able to connect outbound. When the tunnel is stopped, the public domain returns ngrok's offline page.
+
+Remote clients use:
+
+```text
+Assets: https://bee-content-finch.ngrok-free.app/assets/manifest.json
+API:    https://bee-content-finch.ngrok-free.app
+```
+
+For local testing, set the client config to `config/client.local.example.json`. Keep MongoDB credentials private; do not expose port 8787. The public manifest and Node catalog must refer to the same published content version.
 
 ## MongoDB data
 

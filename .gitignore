@@ -10,10 +10,6 @@ __pycache__/
 *.tmp
 design/previews/
 
-# Machine-specific public Nginx configuration and ACME challenge contents.
-deploy/nginx.public.conf
-deploy/acme-webroot/
-
 # Raw downloads and extraction belong exclusively in temp_assets.
 lpc_entry/
 other_assets/

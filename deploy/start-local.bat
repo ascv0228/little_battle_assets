@@ -24,7 +24,7 @@ if errorlevel 1 (
   exit /b 1
 )
 
-echo Local Little Battle proxy started: http://127.0.0.1:8080/
-echo Health check: http://127.0.0.1:8080/health
-echo This local profile is not exposed to the Internet.
+echo Local Little Battle proxy started: http://127.0.0.1:5000/
+echo Health check: http://127.0.0.1:5000/health
+echo For public access, run deploy\start-tunnel.bat.
 endlocal
