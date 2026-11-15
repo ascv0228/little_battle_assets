@@ -6,14 +6,21 @@ import { safeAssetPath } from '../scripts/publish.mjs';
 import { loadConfig } from './config.mjs';
 import { MongoStore } from './store.mjs';
 import { loadCatalog } from './catalog.mjs';
+import { createAuth } from './auth.mjs';
 
 class HttpError extends Error { constructor(status, code) { super(code); this.status = status; this.code = code; } }
 const json = (response, status, value) => { response.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' }); response.end(JSON.stringify(value)); };
 
 async function body(request) {
   if (!(request.headers['content-type'] || '').startsWith('application/json')) throw new HttpError(415, 'JSON_REQUIRED');
-  let value = '';
-  for await (const chunk of request) { value += chunk; if (Buffer.byteLength(value) > 65536) throw new HttpError(413, 'BODY_TOO_LARGE'); }
+  const chunks = [];
+  let size = 0;
+  for await (const chunk of request) {
+    size += chunk.length;
+    if (size > 65536) throw new HttpError(413, 'BODY_TOO_LARGE');
+    chunks.push(chunk);
+  }
+  const value = Buffer.concat(chunks).toString('utf8');
   try { return JSON.parse(value); } catch { throw new HttpError(400, 'INVALID_JSON'); }
 }
 
@@ -30,7 +37,7 @@ export function validateTeam(slots, catalog) {
   if (!selected.length || selected.some(id => typeof id !== 'string' || !allowed.has(id)) || new Set(selected).size !== selected.length) throw new HttpError(400, 'INVALID_TEAM');
 }
 
-export function createServer({ publicRoot, store, allowedOrigins = [] }) {
+export function createServer({ publicRoot, store, allowedOrigins = [], auth = createAuth(store) }) {
   return http.createServer(async (request, response) => {
     try {
       const origin = request.headers.origin;
@@ -67,6 +74,18 @@ export function createServer({ publicRoot, store, allowedOrigins = [] }) {
       }
       if (!url.pathname.startsWith('/api/')) throw new HttpError(404, 'NOT_FOUND');
       if (!await store.healthy()) throw new HttpError(503, 'DATABASE_UNAVAILABLE');
+      if (url.pathname === '/api/auth/register' && request.method === 'POST') {
+        json(response, 201, await auth.register(await body(request), request.socket.remoteAddress)); return;
+      }
+      if (url.pathname === '/api/auth/login' && request.method === 'POST') {
+        json(response, 200, await auth.login(await body(request), request.socket.remoteAddress)); return;
+      }
+      if (url.pathname === '/api/auth/me' && request.method === 'GET') {
+        json(response, 200, await auth.me(token(request))); return;
+      }
+      if (url.pathname === '/api/auth/logout' && request.method === 'POST') {
+        json(response, 200, await auth.logout(token(request))); return;
+      }
       if (url.pathname === '/api/session' && request.method === 'POST') {
         const input = await body(request);
         if (input.token !== undefined && (typeof input.token !== 'string' || !/^[A-Za-z0-9_-]{32,512}$/.test(input.token))) throw new HttpError(400, 'INVALID_TOKEN');
@@ -80,11 +99,11 @@ export function createServer({ publicRoot, store, allowedOrigins = [] }) {
       if (url.pathname === '/api/player/team' && ['GET', 'PUT'].includes(request.method)) {
         const bearer = token(request);
         const player = await store.player(bearer);
-        if (!player) throw new HttpError(401, 'UNKNOWN_SESSION');
+        if (!player) throw new HttpError(401, 'AUTH_REQUIRED');
         if (request.method === 'GET') { json(response, 200, { slots: player.slots }); return; }
         const input = await body(request);
         validateTeam(input.slots, await store.catalog(await loadCatalog(publicRoot)));
-        if (!await store.saveTeam(bearer, input.slots)) throw new HttpError(401, 'UNKNOWN_SESSION');
+        if (!await store.saveTeam(bearer, input.slots)) throw new HttpError(401, 'AUTH_REQUIRED');
         json(response, 200, { slots: input.slots }); return;
       }
       throw new HttpError(404, 'NOT_FOUND');

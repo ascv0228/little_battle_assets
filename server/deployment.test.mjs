@@ -25,6 +25,11 @@ test('explicit application host and port overrides remain supported', () => {
   assert.deepEqual(configWith({ HOST: '127.0.0.1', PORT: '5100' }), { host: '127.0.0.1', port: 5100 });
 });
 
+test('public tunnel disables HTTP request introspection for account credentials', () => {
+  const tunnel = readFileSync(path.join(ROOT, 'deploy/start-tunnel.bat'), 'utf8');
+  assert.match(tunnel, /--inspect=false/);
+});
+
 test('deployment scripts run the application directly without a proxy dependency', () => {
   const start = readFileSync(path.join(ROOT, 'deploy/start-local.bat'), 'utf8');
   const stop = readFileSync(path.join(ROOT, 'deploy/stop-local.bat'), 'utf8');

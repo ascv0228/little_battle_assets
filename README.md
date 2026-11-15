@@ -47,7 +47,20 @@ The native pygame client defaults to the public ngrok HTTPS address `https://bee
 | `PUT /api/player/team` | Save exactly 16 unique known ally IDs/nulls, with at least one member |
 
 Bearer tokens are stored hashed in MongoDB. Clients never connect directly to MongoDB.
-Accounts are currently installation identities, not username/password login or cross-device account recovery.
+Named accounts now use username/password login. Legacy installation identities remain separate for compatibility; they are not automatically converted, imported or overwritten. Named-account teams belong to a stable user ID, not a session token.
+
+### Account API
+
+| Endpoint | Request / response |
+| --- | --- |
+| `POST /api/auth/register` | `{username,password}` -> HTTP 201 `{user:{id,username},token,expiresAt}` |
+| `POST /api/auth/login` | `{username,password}` -> HTTP 200 with the same session shape |
+| `GET /api/auth/me` | Bearer token -> `{user:{id,username},expiresAt}` |
+| `POST /api/auth/logout` | Bearer token -> `{ok:true}`; revokes that server session |
+
+Usernames are case-insensitive, canonicalized to lowercase, and contain 3–32 ASCII letters, digits, underscores or hyphens. Passwords contain 12–128 Unicode code points, are not trimmed, and are limited to 512 UTF-8 bytes. Passwords use a per-user random salt and asynchronous scrypt (`N=32768,r=8,p=3`); password plaintext is never stored. At most two expensive hashes run concurrently. Login attempts are throttled by normalized username and direct socket IP (the process-local limiter resets on server restart; the shared ngrok loopback IP can rate-limit multiple users).
+
+MongoDB `users` has a unique username index; `sessions` stores only the token digest, stable `userId` and seven-day expiry with a TTL index. Expiry is checked during authentication rather than relying on delayed TTL cleanup. Logout invalidates only the submitted session. Invalid login credentials use one error; duplicate registration explicitly returns HTTP 409 `ACCOUNT_EXISTS`. Password reset, email verification, MFA and anonymous-team import are not implemented in this first version.
 
 ### Shared HTTP JSON contract
 
@@ -73,12 +86,14 @@ An app checks the manifest every startup and downloads only files whose cached S
 `deploy/start-local.bat` starts Node directly on `127.0.0.1:5000`, explicitly setting `HOST` and `PORT` for that process; it is local-only. `deploy/start-tunnel.bat` checks the ngrok config, launches the local application, waits for the local `/health` endpoint, then opens the reserved public tunnel:
 
 ```powershell
-ngrok http --domain=bee-content-finch.ngrok-free.app 5000
+ngrok http --domain=bee-content-finch.ngrok-free.app --inspect=false 5000
 ```
 
 The script uses `D:\Tool\ngrok\ngrok.exe` and only starts the tunnel after health reports success, so MongoDB must be reachable and assets published first. Node handles `/assets/`, `/api/` and `/health` on the same loopback port. `deploy/stop-tunnel.bat` closes the project's ngrok and API windows; `deploy/stop-local.bat` closes only the project's API window. Neither script manages system-wide proxy services.
 
 The application retains bearer-token validation, per-player team authorization, a 64 KiB JSON body limit, browser-origin checks, restricted public asset paths, immutable release caching and no-store manifest/API responses. Credentials and raw assets are not served. The current protocol is HTTP JSON plus resource downloads: there are no multiplayer room, WebSocket or authoritative battle-state recovery endpoints. Session resumption restores installation identity and saved teams, not a multiplayer battle.
+
+New tunnel launches disable HTTP inspection to avoid collecting login request bodies. This does not reconfigure an already-running ngrok tunnel: restart it with `--inspect=false` before using real account passwords. Do not enable request-body logging in ngrok policies, the application or any future gateway.
 
 If a previous deployment is still running, stop that project's old processes before starting this version so port 5000 is free. When running `npm start` directly with an existing private environment file, remove an old `PORT=8787` override or change it to `PORT=5000`; the deployment batch script already overrides it without editing credentials.
 

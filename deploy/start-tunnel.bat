@@ -24,7 +24,7 @@ timeout /t 1 /nobreak >nul
 goto wait_health
 
 :start_tunnel
-start "Little Battle ngrok" "%NGROK_EXE%" http --domain=bee-content-finch.ngrok-free.app 5000
+start "Little Battle ngrok" "%NGROK_EXE%" http --domain=bee-content-finch.ngrok-free.app --inspect=false 5000
 echo Public URL: https://bee-content-finch.ngrok-free.app
 echo Health check: https://bee-content-finch.ngrok-free.app/health
 endlocal
